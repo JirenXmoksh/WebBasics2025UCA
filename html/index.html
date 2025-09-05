@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifTracker Home</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <style>
+    @font-face {
+      font-family: 'gilMed';
+      src: url(../assets/fonts/Gilroy-Medium.ttf);
+    }
+    @font-face {
+      font-family: 'gilLight';
+      src: url(../assets/fonts/Gilroy-Light.ttf);
+    }
+    @font-face {
+      font-family: 'gilBold';
+      src: url(../assets/fonts/Gilroy-Bold.ttf);
+    }
+  </style>
+</head>
+<body id="bodi" class="bg-white text-black select-none">
+  
+  <nav class="w-full text-sm font-[gilBold]">
+    <div class="flex items-center justify-between px-10 py-4 bg-white text-black border-b-1 border-zinc-300">
+      <div>
+        <h1 class="text-[2vw]"><a href="index.html">LT</a></h1>
+      </div>
+      <div>
+        <h1 class="text-[2vw]">LiftTracker</h1>
+      </div>
+      <div>
+        <h1 class="text-[1vw]">
+          <button class="bg-white text-black cursor-pointer">
+            <a href="profile.html">Profile</a>
+          </button>
+        </h1>
+      </div>
+    </div>
+  </nav>
+
+  <div class="text-center py-5 font-[gilLight]">
+    <h1 class="text-[5vw] font-[gilMed]">My Personal Bests</h1> 
+    <div class="flex flex-wrap items-center justify-center px-10 gap-5">
+      <!-- At max 4 PRs -->
+      <!-- PR div-->
+      <div class="border-2 border-black w-1/4 px-5 py-10 rounded-2xl border-zinc-300 shadow-md">
+        <h2 class="text-[2vw]">Deadlift</h2>
+        <h3 class="text-[1vw]">150 kg</h3>
+      </div>
+
+      <!-- PR div-->
+      <div class="border-2 border-black w-1/4 px-5 py-10 rounded-2xl border-zinc-300 shadow-md">
+        <h2 class="text-[2vw]">Bench press</h2>
+        <h3 class="text-[1vw]">65 kg</h3>
+      </div>
+
+      <!-- PR div-->
+      <div class="border-2 border-black w-1/4 px-5 py-10 rounded-2xl border-zinc-300 shadow-md">
+        <h2 class="text-[2vw]">Squat</h2>
+        <h3 class="text-[1vw]">80 kg</h3>
+      </div>
+
+      <!-- PR div-->
+      <div class="border-2 border-black w-1/4 px-5 py-10 rounded-2xl border-zinc-300 shadow-md">
+        <h2 class="text-[2vw]">Wide Grip Lat Pulldown</h2>
+        <h3 class="text-[1vw]">55 kg</h3>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="py-5 font-[gilMed] bg-zinc-100">
+    <h1 class="text-center text-[5vw]">My Exercises</h1>
+
+    <section class="chestDiv px-10 mb-10">
+      <div class="flex items-center"> 
+        <h1 class="text-[4vw] font-[gilLight] uppercase">Chest</h1>
+      </div>
+
+      <!-- Dynamic rendering of exercises here -->
+      <div class="grid xs:grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-2 mt-0" id="chest-container"></div>
+      
+    </section>
+
+    <section class="targetMuscleDiv px-10 my-10">
+      <div class="flex items-center"> 
+        <h1 class="text-[4vw] font-[gilLight] uppercase">Back</h1>
+        <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Exercise">
+          <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Exercise">
+        </div>
+      </div>
+      
+      <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-0">
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Wide grip lat pulldown
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+        <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Seated cable rows
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="targetMuscleDiv px-10 my-10">
+      <div class="flex items-center"> 
+        <h1 class="text-[4vw] font-[gilLight] uppercase">Legs</h1>
+        <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Exercise">
+          <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Exercise">
+        </div>
+      </div>
+      <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-0">
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Squats
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+        <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Romanian Deadlifts
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="targetMuscleDiv px-10 my-10">
+      <div class="flex items-center"> 
+        <h1 class="text-[4vw] font-[gilLight] uppercase">Shoulders</h1>
+        <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Exercise">
+          <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Exercise">
+        </div>
+      </div>
+      <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-0">
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Shoulder press
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+        <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Lateral Raises
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="targetMuscleDiv px-10 my-10">
+      <div class="flex items-center"> 
+        <h1 class="text-[4vw] font-[gilLight] uppercase">Biceps</h1>
+        <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Exercise">
+          <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Exercise">
+        </div>
+      </div>
+      <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-0">
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Incline curls
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+        <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Incline hammer Curls
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="targetMuscleDiv px-10 my-10">
+      <div class="flex items-center"> 
+        <h1 class="text-[4vw] font-[gilLight] uppercase">Triceps</h1>
+        <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Exercise">
+          <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Exercise">
+        </div>
+      </div>
+      <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-0">
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Skullcrushers
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+        <!-- Exercise div | Clear data, Delete exercise, show history, add new weight -->  
+        <div class="exerciseDiv flex items-center justify-between  bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md">
+          <div class="exName text-lg font-[gilMed]">
+            Overhead extensions
+          </div>
+          <div class="buttons flex items-center justify-center">
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Check History">
+              <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Add New Weight">
+              <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Clear data">
+              <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+            </div>
+            <div data-toggle="tooltip" class="mx-2 cursor-pointer" data-placement="left" title="Delete exercise">
+              <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+  <footer class="footer flex font-[gilBold] items-center justify-between w-full py-10 px-5">
+    <div>
+      <h1 class="text-[4vw]"><a href="index.html">LifTracker</a></h1>
+      <h3 class="text-[1vw]">Track your lifts</h3>
+    </div>
+    <div>
+      <h3 class="text-md font-[gilMed] text-zinc-400">Copyright © Moksh G16 UCA 2025, 23101991905.</h3>
+      <h3 class="text-md font-[gilMed] text-zinc-400">Chitkara University, Punjab. All Rights Reserved.</h3>
+    </div>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+/* @import "tailwindcss"; */
+.prevent-select {
+  user-select: none; /* Standard syntax */
+}
