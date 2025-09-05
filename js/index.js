@@ -248,78 +248,74 @@ function renderExercises(muscle) {
       let historyList = this.parentElement.querySelector('.lift-history')
 
       if (historyList.classList.contains("hidden")) { // if the list is hidden then unhide it
-        if (exercise.lifts.length === 0) {
-          historyList.innerHTML = `
-            <li class="my-1 p-2">No lifts yet.</li>
-          `
-        } else {
-          historyList.innerHTML = exercise.lifts
-          .map((lift, idx) => {
-            return `
-              <li class="my-1 p-2 flex items-center justify-around w-full">
-              <span>${lift.weight}kg on ${lift.date}</span>
-              <img
-                src="../assets/images/remove2.png"
-                alt="Remove entry"
-                width="12px"
-                height="12px"
-                class="remove-lift cursor-pointer ml-2 hover:scale-120 transition duration-200"
-                data-muscle="${muscleName}"
-                data-id="${exID}"
-                data-index="${idx}"
-              />             
-              </li>
-            `;
-          })
-          .join("")
-        }
-        historyList.classList.remove("hidden")
-
+        renderHistory(exercise, historyList, muscleName, exID);
         // Attach the remove lift event listener to the image
-        historyList.querySelectorAll(".remove-lift").forEach((btn) => {
-          btn.addEventListener("click", function() {
-            let muscleName = this.dataset.muscle
-            let exID = this.dataset.id
-            let liftIdx = parseInt(this.dataset.index, 10);
-
-            let groups = getMuscleGroups()
-            let muscleGroup = groups.find(m => m.name === muscleName)
-            if (!muscleGroup) {
-              return;
-            }
-
-            let exercise = muscleGroup.data.find(ex => ex.id == exID)
-            if (!exercise) {
-              return;
-            }
-
-            // if (muscleIdx !== -1) {
-            //   let exerciseID = groups[muscleIdx].data.findIndex(ex => ex.id == exID)
-            //   if (exerciseID !== -1) {
-            //     groups[muscleIdx].data[exerciseID].lifts.splice(liftIdx, 1);
-            //     localStorage.setItem("muscleGroups", JSON.stringify(groups))
-            //     renderExercises(groups[muscleIdx])
-            //   }
-            // }
-            exercise.lifts.splice(liftIdx, 1);
-            localStorage.setItem("muscleGroups", JSON.stringify(groups));
-            
-            // If no lifts remain, show the "No lifts yet" placeholder
-            if (exercise.lifts.length === 0) {
-              let historyList = this.closest(".lift-history");
-              historyList.innerHTML = `
-                <li class="my-1 p-2">No lifts yet.</li>
-              `;
-            } else {
-              this.closest("li").remove();
-            }
-          })
-        })
+        attachRemoveLiftHandlers(historyList);
+        historyList.classList.remove("hidden")
       } else {
         historyList.classList.add("hidden")
       }
     })
   })
+}
+
+function renderHistory(exercise, historyList, muscleName, exID) {
+  if (exercise.lifts.length === 0) {
+    historyList.innerHTML = `
+      <li class="my-1 p-2">No lifts yet.</li>
+    `
+  } else {
+    historyList.innerHTML = exercise.lifts
+    .map((lift, idx) => {
+      return `
+        <li class="my-1 p-2 flex items-center justify-around w-full">
+        <span>${lift.weight}kg on ${lift.date}</span>
+        <img
+          src="../assets/images/remove2.png"
+          alt="Remove entry"
+          width="12px"
+          height="12px"
+          class="remove-lift cursor-pointer ml-2 hover:scale-120 transition duration-200"
+          data-muscle="${muscleName}"
+          data-id="${exID}"
+          data-index="${idx}"
+        />             
+        </li>
+      `;
+    })
+    .join("")
+  }
+}
+
+function attachRemoveLiftHandlers(historyList) {
+  historyList.querySelectorAll(".remove-lift").forEach((btn) => {
+    btn.addEventListener("click", handleRemoveLift)
+  })
+}
+
+function handleRemoveLift(evt) {
+  const btn = evt.currentTarget
+  let muscleName = btn.dataset.muscle
+  let exID = btn.dataset.id
+  let liftIdx = parseInt(btn.dataset.index, 10);
+
+  let groups = getMuscleGroups()
+  let muscleGroup = groups.find(m => m.name === muscleName)
+  if (!muscleGroup) {
+    return;
+  }
+
+  let exercise = muscleGroup.data.find(ex => ex.id == exID)
+  if (!exercise) {
+    return;
+  }
+
+  exercise.lifts.splice(liftIdx, 1);
+  localStorage.setItem("muscleGroups", JSON.stringify(groups));
+  
+  const historyList = btn.closest(".lift-history")
+  renderHistory(exercise, historyList, muscleName, exID);
+  attachRemoveLiftHandlers(historyList)
 }
 
 // Add exercise
@@ -388,8 +384,6 @@ function addNewWeight(muscleName, exerciseID, weight) {
     }
   }
 }
-
-// Remove data from an exercise
 
 // Personal bests of atmax 4 exercises (the 4 heaviest ones)
 
