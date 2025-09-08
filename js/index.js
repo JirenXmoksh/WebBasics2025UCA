@@ -33,57 +33,46 @@ function renderData() {
   })
 }
 
-
-function renderExercises(muscle) {
-  
-  // if (muscle.data.length === 0) {
-  //   return;
-  // }
-
-  // get the container which has name `${muscle}-container`
-  var container = document.getElementById(`${muscle.name}-container`);
-  container.innerHTML = ""; // clear before re-render
-
-  muscle.data.forEach((exercise) => {
-    console.log(exercise.id);
+function renderThisExercise(container, exercise, muscle) {
+  console.log(exercise.id);
     
-    var div = document.createElement("div")
-    div.className = "exerciseDiv flex items-center justify-between bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md";
+  var div = document.createElement("div")
+  div.className = "exerciseDiv flex items-center justify-between bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md";
 
-    div.innerHTML = `
-      <div class="exName text-sm sm:text-sm md:text-md lg:text-lg font-[gilLight]">
-        ${exercise.name}
+  div.innerHTML = `
+    <div class="exName text-sm sm:text-sm md:text-md lg:text-lg font-[gilLight]">
+      ${exercise.name}
+    </div>
+    <div class="buttons flex items-center justify-center relative">
+
+      <div data-toggle="tooltip" class="mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Add To Favourites">
+        <img src="../assets/images/heart.png" width="15px" height="15px" alt="Add to favourites">
       </div>
-      <div class="buttons flex items-center justify-center relative">
 
-        <div data-toggle="tooltip" class="mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Add To Favourites">
-          <img src="../assets/images/heart.png" width="15px" height="15px" alt="Add to favourites">
-        </div>
-
-        <div data-toggle="tooltip" class="show-history-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Check History" data-muscle="${muscle.name}" data-id="${exercise.id}">
-          <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
-        </div>
-        <ul class="lift-history hidden absolute top-full bg-black shadow-lg z-10 mt-2 text-sm text-zinc-300 px-1 py-2 rounded-md w-[150%] flex flex-col justify-center items-center"></ul>
-
-        <div data-toggle="tooltip" class="add-weight-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Add New Weight" data-id="${exercise.id}" data-muscle="${muscle.name}">
-          <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
-        </div>
-
-        <div data-toggle="tooltip" class="mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Clear data">
-          <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
-        </div>
-
-        <div data-toggle="tooltip" class="delete-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Delete exercise" data-id="${exercise.id}" data-muscle="${muscle.name}">
-          <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
-        </div>
-
+      <div data-toggle="tooltip" class="show-history-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Check History" data-muscle="${muscle.name}" data-id="${exercise.id}">
+        <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
       </div>
-    `;
+      <ul class="lift-history hidden absolute top-full bg-black shadow-lg z-10 mt-2 text-sm text-zinc-300 px-1 py-2 rounded-md w-[150%] flex flex-col justify-center items-center"></ul>
 
-    container.appendChild(div);
-  })
+      <div data-toggle="tooltip" class="add-weight-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Add New Weight" data-id="${exercise.id}" data-muscle="${muscle.name}">
+        <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
+      </div>
 
+      <div data-toggle="tooltip" class="mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Clear data">
+        <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
+      </div>
 
+      <div data-toggle="tooltip" class="delete-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Delete exercise" data-id="${exercise.id}" data-muscle="${muscle.name}">
+        <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
+      </div>
+
+    </div>
+  `;
+
+  container.appendChild(div);
+}
+
+function appendAddNewExerciseDiv(container, muscle) {
   // append the 'add a new exercise' div after all exercises always
   var addNewExerciseDiv = document.createElement("div");
   
@@ -147,6 +136,19 @@ function renderExercises(muscle) {
     </div>
   `
   container.appendChild(addNewExerciseDiv)
+}
+
+function renderExercises(muscle) {
+  
+  // get the container which has name `${muscle}-container`
+  var container = document.getElementById(`${muscle.name}-container`);
+  container.innerHTML = ""; // clear before re-render
+
+  muscle.data.forEach((exercise) => {
+    renderThisExercise(container, exercise, muscle)
+  })
+
+  appendAddNewExerciseDiv(container, muscle)
 
   // Attach event listeners to all the 'delete-btn' buttons to remove the exercise
   // This returns the array of all the delete buttons 
