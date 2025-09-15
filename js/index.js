@@ -360,12 +360,13 @@ function removeExercse(muscleName, exerciseID) {
 function addNewWeight(muscleName, exerciseID, weight) {
   let groups = getMuscleGroups();
   let muscleGroupIdx = groups.findIndex(m => m.name === muscleName)
+  let exerciseName = "";
 
   if (muscleGroupIdx !== -1) {
     let exIdx = groups[muscleGroupIdx].data.findIndex(ex => ex.id == exerciseID)
     if (exIdx != -1) {
-
       let exercise = groups[muscleGroupIdx].data[exIdx]
+      exerciseName = exercise.name;
       if (exercise.lifts.length >= 15) {
         exercise.lifts.shift();
       }
@@ -381,6 +382,21 @@ function addNewWeight(muscleName, exerciseID, weight) {
       }
 
       exercise.lifts.push(newLift);
+
+      let heaviest = {
+        heaviestWeight: 12,
+        exerciseName: "null"
+      }
+      // update the heaviest weight variable if this one is the maximum
+      let curHeaviest = JSON.parse(localStorage.getItem("heaviestLift") || "0");
+      if (!curHeaviest || weight > curHeaviest.liftWeight) {
+        let newHeaviestLift = {
+          liftWeight: weight,
+          liftName: exerciseName
+        }
+        localStorage.setItem("heaviestLift", JSON.stringify(newHeaviestLift));
+      }
+
       localStorage.setItem("muscleGroups", JSON.stringify(groups));
       renderExercises(groups[muscleGroupIdx]);
     }
