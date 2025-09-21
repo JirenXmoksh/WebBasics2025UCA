@@ -2,6 +2,14 @@ if (!localStorage.getItem("muscleGroups")) {
   localStorage.setItem("muscleGroups", JSON.stringify(muscleGroups))
 }
 
+// whenever any out of "Deadlift", "Bench Press" or "Squat" gets updated in the local storage 
+window.addEventListener("storage", (e) => {
+ if (e.key === "deadlift" || e.key === "bench-press" || e.key === "squat") {
+  console.log(e.key);
+  displayTopThree();
+ }
+})
+
 // Get all groups
 function getMuscleGroups() {
   return JSON.parse(localStorage.getItem("muscleGroups"));
@@ -21,9 +29,9 @@ function updateMuscleGroup(muscleName, newData) {
   }
 }
 
-(function() {
-  // fetch the states of the top 3 lifts
-  let deadlift = JSON.parse(localStorage.getItem("deadlift"));
+function displayTopThree() { // giving it a name because we want to call this whenever the localStorage changes
+  
+  let deadlift = JSON.parse(localStorage.getItem("deadlift") || "0");
   let deadliftDiv = document.querySelector("#dead");
   if (deadlift) {
       deadliftDiv.innerHTML = `
@@ -31,11 +39,39 @@ function updateMuscleGroup(muscleName, newData) {
       `
   } else {
     deadliftDiv.innerHTML = `
-      null
+      N.A.
     `
   }
+
+  let benchPress = JSON.parse(localStorage.getItem("bench-press"));
+  let benchPressDiv = document.querySelector("#bench-press");
+  if (benchPress) {
+      benchPressDiv.innerHTML = `
+        ${benchPress} kg
+      `
+  } else {
+    benchPressDiv.innerHTML = `
+      N.A.
+    `
+  }
+
+  let squat = JSON.parse(localStorage.getItem("squat"));
+  let squatDiv = document.querySelector("#squat");
+  if (squat) {
+      squatDiv.innerHTML = `
+        ${squat} kg
+      `
+  } else {
+    squatDiv.innerHTML = `
+      N.A.
+    `
+  }
+
+}
+displayTopThree();
+(() => {
   renderData();
-})();
+})()
 
 function renderData() {
   let groups = getMuscleGroups();
@@ -76,7 +112,6 @@ function renderThisExercise(container, exercise, muscle) {
       <div data-toggle="tooltip" class="delete-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Delete exercise" data-id="${exercise.id}" data-muscle="${muscle.name}">
         <img src="../assets/images/remove.png" width="15px" height="15px" alt="Delete exercise">
       </div>
-
     </div>
   `;
 
@@ -414,7 +449,7 @@ function addNewWeight(muscleName, exerciseID, weight) {
     if (exIdx != -1) {
       let exercise = groups[muscleGroupIdx].data[exIdx]
       exerciseName = exercise.name;
-      if (exercise.lifts.length >= 15) {
+      if (exercise.lifts.length >= 15) { // store at max 15 lifts, remove older ones if exceeding 15
         exercise.lifts.shift();
       }
 
@@ -442,6 +477,26 @@ function addNewWeight(muscleName, exerciseID, weight) {
 
       localStorage.setItem("muscleGroups", JSON.stringify(groups));
       renderExercises(groups[muscleGroupIdx]);
+
+      if (exerciseName === "Deadlift") {
+        let deadliftPR = JSON.parse(localStorage.getItem("deadlift") || "null");
+        if (weight > deadliftPR) {
+          localStorage.setItem("deadlift", JSON.stringify(weight))
+          displayTopThree();
+        }
+      } else if (exerciseName === "Bench Press") {
+        let benchPressPR = JSON.parse(localStorage.getItem("bench-press") || "null");
+        if (weight > benchPressPR) {
+          localStorage.setItem("bench-press", JSON.stringify(weight));
+          displayTopThree();
+        }
+      } else if (exerciseName === "Squat") {
+        let squatPR = JSON.parse(localStorage.getItem("squat") || "null");
+        if (weight > squatPR) {
+          localStorage.setItem("squat", JSON.stringify(weight));
+          displayTopThree();
+        }
+      }
     }
   }
 }

@@ -41,7 +41,7 @@ function showHeaviestWeight() {
 
   if (!heaviestLift) {
     let heaviestWeightDiv = document.querySelector("#heaviest-weight")
-    heaviestWeightDiv.innerHTML = `null`
+    heaviestWeightDiv.innerHTML = `N.A.`
     return;
   }
 
@@ -79,7 +79,6 @@ function showTotalWeight() {
     ${totalWeight}kg
   `
 }
-// Favourite movements
 
 // Clear all data from website
 function setupClearDataButton() {
@@ -87,8 +86,8 @@ function setupClearDataButton() {
     localStorage.setItem("muscleGroups", JSON.stringify(muscleGroups))
     localStorage.setItem("heaviestLift", JSON.stringify(null))
     localStorage.setItem("deadlift", JSON.stringify(null))
-    // localStorage.setItem("bench-press", JSON.stringify(null))
-    // localStorage.setItem("squat", JSON.stringify(null))
+    localStorage.setItem("bench-press", JSON.stringify(null))
+    localStorage.setItem("squat", JSON.stringify(null))
     renderProfile(); // re-render the profile after clearing data
   })
 }
