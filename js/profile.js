@@ -1,4 +1,4 @@
-(function init(){
+(() => {
   renderProfile();
 })()
 
@@ -57,7 +57,7 @@ function showHeaviestWeight() {
 
 // Total weight lifted
 function showTotalWeight() {
-   // get the musclegroup object from localStorage
+  // get the musclegroup object from localStorage
   let muscleGroups = JSON.parse(localStorage.getItem("muscleGroups"))
   let totalWeight = 0;
 
@@ -86,6 +86,9 @@ function setupClearDataButton() {
   document.querySelector("#clear-data").addEventListener("click", () => {
     localStorage.setItem("muscleGroups", JSON.stringify(muscleGroups))
     localStorage.setItem("heaviestLift", JSON.stringify(null))
+    localStorage.setItem("deadlift", JSON.stringify(null))
+    // localStorage.setItem("bench-press", JSON.stringify(null))
+    // localStorage.setItem("squat", JSON.stringify(null))
     renderProfile(); // re-render the profile after clearing data
   })
 }

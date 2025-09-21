@@ -1,4 +1,3 @@
-
 if (!localStorage.getItem("muscleGroups")) {
   localStorage.setItem("muscleGroups", JSON.stringify(muscleGroups))
 }
@@ -23,6 +22,18 @@ function updateMuscleGroup(muscleName, newData) {
 }
 
 (function() {
+  // fetch the states of the top 3 lifts
+  let deadlift = JSON.parse(localStorage.getItem("deadlift"));
+  let deadliftDiv = document.querySelector("#dead");
+  if (deadlift) {
+      deadliftDiv.innerHTML = `
+        ${deadlift} kg
+      `
+  } else {
+    deadliftDiv.innerHTML = `
+      null
+    `
+  }
   renderData();
 })();
 
@@ -318,6 +329,8 @@ function handleRemoveLift(evt) {
   const historyList = btn.closest(".lift-history")
   renderHistory(exercise, historyList, muscleName, exID);
   attachRemoveLiftHandlers(historyList)
+
+  recalcHeaviestLift(groups);
 }
 
 // Add exercise
@@ -339,6 +352,37 @@ function addExercise(muscleName, exName) {
   }
 }
 
+// Recalculate heaviest lift 
+function recalcHeaviestLift(groups) {
+  let newHeaviestLiftWeight = null;
+  let newHeaviestLiftName = null;
+  // object with "name" and "data"
+  groups.forEach((muscle) => { 
+    if (muscle.data.length) { // check if there are any exercises for this muscle
+      for (let i in muscle.data) { 
+        let exercise = muscle.data[i]; // 1 exercise object = muscle.data[i]
+        let lifts = exercise.lifts;
+        for (let j in lifts) {
+          if (lifts[j].weight > newHeaviestLiftWeight) {
+            newHeaviestLiftWeight = lifts[j].weight;
+            newHeaviestLiftName = exercise.name
+          }
+        }
+      }
+    }
+  })
+
+  if (newHeaviestLiftWeight) {
+    let newHeaviestLift = {
+      liftWeight: newHeaviestLiftWeight,
+      liftName: newHeaviestLiftName
+    }
+    localStorage.setItem("heaviestLift", JSON.stringify(newHeaviestLift));
+  } else {
+    localStorage.setItem("heaviestLift", JSON.stringify(null));
+  }
+}
+
 // Remove the exercise
 function removeExercse(muscleName, exerciseID) {
 
@@ -354,6 +398,9 @@ function removeExercse(muscleName, exerciseID) {
     renderExercises(groups[idx]);
   }
 
+  // whenever an exercise is removed, re calculate the heaviestLift and update in localStorage
+  // iterate on the whole 'muscleGroups' object
+  recalcHeaviestLift(groups);
 }
 
 // Add data to that exercise
@@ -383,10 +430,6 @@ function addNewWeight(muscleName, exerciseID, weight) {
 
       exercise.lifts.push(newLift);
 
-      let heaviest = {
-        heaviestWeight: 12,
-        exerciseName: "null"
-      }
       // update the heaviest weight variable if this one is the maximum
       let curHeaviest = JSON.parse(localStorage.getItem("heaviestLift") || "0");
       if (!curHeaviest || weight > curHeaviest.liftWeight) {
