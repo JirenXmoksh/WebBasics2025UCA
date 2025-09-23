@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LifTracker Profile</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="../css/index.css">
   <style>
     @font-face {
       font-family: 'gilMed';
@@ -24,70 +25,49 @@
   </style>
 </head>
 <body class="select-none">
-
-  <nav class="w-full text-sm font-[gilBold]">
-    <div class="flex items-center justify-between px-10 py-4 bg-white text-black border-b-1 border-zinc-300">
+  <nav class="w-full text-sm font-[gilLight] bg-black text-zinc-200">
+    <div class="flex items-center justify-between px-10 py-4 border-zinc-300">
       <div>
-        <h1 class="text-[2vw]"><a href="index.html">LT</a></h1>
+        <h1 class="text-[2vw] white-text-shadow"><a href="index.html">LT</a></h1>
       </div>
       <div>
-        <h1 class="text-[2vw]">LiftTracker</h1>
+        <h1 class="text-[2vw] white-text-shadow">LiftTracker</h1>
       </div>
-      <div>
-        <h1 class="text-[1vw]">
-          <button class="bg-white text-black cursor-pointer">
-            <a href="profile.html">Profile</a>
-          </button>
-        </h1>
+      <div class="flex items-center justify-center gap-2 px-5 overflow-y-hidden">
+        <button id="clear-data" class="bg-linear-to-r from-red-700 to-red-500 text-white rounded-2xl font-bold px-4 py-2 w-fit text-sm hover:scale-105 transition duration-200">Clear Data</button>
+        <button class="profile-btn cursor-pointer white-text-shadow bg-linear-to-r from-gray-300 to-gray-100 text-black py-2 px-4 font-bold rounded-2xl text-sm border-none hover:scale-105 transition duration-200">
+          <a href="profile.html">Profile</a>
+        </button>
       </div>
     </div>
   </nav>
 
   <section class="w-full font-[gilLight]">
   
-    <div class="bg-red border-b-1 border-zinc-300 flex items-center justify-around py-10">
-      <h1 class="text-[6vw]">Total Exercises</h1>
+    <div class="black-text-shadow bg-linear-to-r from-red-900 via-red-700 to-red-500 flex items-center justify-around py-10">
+      <h1 class="text-[6vw] ">Total Exercises</h1>
       <h3 class="text-[3vw]" id="total-exercises"></h3>
     </div>
   
-    <div class="bg-red border-b-1 border-zinc-300 flex items-center justify-around py-10">
+    <div class="black-text-shadow bg-linear-to-r from-red-900 via-red-700 to-red-500 flex items-center justify-around py-10">
       <h3 class="text-[3vw]" id="heaviest-weight"></h3>
       <h1 class="text-[6vw]">Heaviest Weight Lifted</h1>
     </div>
   
-    <div class="bg-red border-zinc-300 flex items-center justify-around py-10">
+    <div class="black-text-shadow bg-linear-to-r from-red-900 via-red-700 to-red-500 flex items-center justify-around py-10">
       <h1 class="text-[6vw]">Total Weight Lifted</h1>
       <h3 class="text-[3vw]" id="total-weight"></h3>
     </div>
-
   </section>
 
-  <!-- Favourite lifts section, can add max upto 7 favourites -->
-  <!-- <section class="w-full h-screen py-10 font-[gilLight] flex items-center justify-around"> 
-    <h1 class="text-[4vw]">Favourite Movements</h1>
-    <ul class="text-[2vw]">
-      <li>Bench Press</li>
-      <li>Deadlift</li>
-      <li>Incline Press</li>
-      <li>Squat</li>
-      <li>Wide Grip Lat Pulldown</li>
-      <li>Seated Cable Row</li>
-      <li>Ex7</li>
-    </ul>
-  </section> -->
-
-  <div data-toggle="tooltip" class="mx-2  font-[gilLight] cursor-pointer w-full flex items-center justify-center my-5" data-placement="left" title="Clear all data">
-    <button id="clear-data" class="bg-red-600 text-white tracking-wider rounded-full px-5 py-3 w-fit">Clear Data</button>
-  </div>
-
-  <footer class="footer flex font-[gilBold] items-center justify-between w-full py-10 px-5 border-t-1 border-zinc-300">
+  <footer class="footer bg-black flex font-[gilMed] text-red-600 items-center justify-between w-full py-10 px-5">
     <div>
-      <h1 class="text-[4vw]"><a href="index.html">LifTracker</a></h1>
-      <h3 class="text-[1vw]">Track your lifts</h3>
+      <h1 class="text-[4vw] red-text-shadow"><a href="index.html">LifTracker</a></h1>
+      <h3 class="text-[1vw] text-red-800">Track your lifts</h3>
     </div>
     <div>
-      <h3 class="text-md font-[gilMed] text-zinc-400">Copyright © Moksh G16 UCA 2025, 23101991905.</h3>
-      <h3 class="text-md font-[gilMed] text-zinc-400">Chitkara University, Punjab. All Rights Reserved.</h3>
+      <h3 class="text-md font-[gilMed] text-red-200">Copyright © Moksh G16 UCA 2025, 23101991905.</h3>
+      <h3 class="text-md font-[gilMed] text-red-300">Chitkara University, Punjab. All Rights Reserved.</h3>
     </div>
   </footer>
   

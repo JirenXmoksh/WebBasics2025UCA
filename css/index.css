@@ -2,3 +2,36 @@
 .prevent-select {
   user-select: none; /* Standard syntax */
 }
+
+.white-text-shadow {
+  text-shadow: 0px 0px 10px white;
+}
+.purple-text-shadow {
+  text-shadow: 0px 0px 20px rgb(100, 2, 165);
+}
+.black-text-shadow {
+  text-shadow: 0px 0px 5px rgb(0, 0, 0, 0.6);
+}
+.red-text-shadow {
+  text-shadow: 0 0px 5px rgb(255, 0, 0);
+}
+/* .exerciseDiv {
+  background-color: white;
+  color: rgb(135, 4, 222);
+} */
+
+.add-exercise-btn:hover {
+  box-shadow: 0 10px 30px 0px rgb(135, 4, 222);
+}
+.profile-btn:hover {
+  box-shadow: 0 0 10px 0px rgb(255, 255, 255);
+}
+#clear-data:hover {
+  box-shadow: 0 0 30px 0px rgb(130, 4, 4);
+}
+.save-exercise:hover {
+  box-shadow: 0 0 10px 0px rgb(9, 195, 2);
+}
+.cancel-exercise:hover {
+  box-shadow: 0 0 10px 0px rgb(190, 2, 2);
+}

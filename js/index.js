@@ -84,17 +84,13 @@ function renderThisExercise(container, exercise, muscle) {
   console.log(exercise.id);
     
   var div = document.createElement("div")
-  div.className = "exerciseDiv flex items-center justify-between bg-white px-5 py-3 border-zinc-300 shadow-md rounded-md";
+  div.className = "exerciseDiv black-text-shadow bg-linear-to-r from-purple-600 via-purple-700 to-purple-900 font-bold text-black bg-purple-600 flex items-center justify-between px-5 py-3 border-zinc-300 shadow-md rounded-md";
 
   div.innerHTML = `
-    <div class="exName text-sm sm:text-sm md:text-md lg:text-lg font-[gilLight]">
+    <div class=" exName text-sm sm:text-sm md:text-md lg:text-lg font-[gilLight]">
       ${exercise.name}
     </div>
     <div class="buttons flex items-center justify-center relative">
-
-      <div data-toggle="tooltip" class="mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Add To Favourites">
-        <img src="../assets/images/heart.png" width="15px" height="15px" alt="Add to favourites">
-      </div>
 
       <div data-toggle="tooltip" class="show-history-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Check History" data-muscle="${muscle.name}" data-id="${exercise.id}">
         <img src="../assets/images/history.png" width="15px" height="15px" alt="Check History">
@@ -105,7 +101,7 @@ function renderThisExercise(container, exercise, muscle) {
         <img src="../assets/images/plus.png" width="15px" height="15px" alt="Add New Weight">
       </div>
 
-      <div data-toggle="tooltip" class="mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Clear data">
+      <div data-toggle="tooltip" class="clear-exercise-data-btn mx-2 cursor-pointer hover:scale-120 transition duration-200" data-placement="left" title="Clear data">
         <img src="../assets/images/trash.png" width="15px" height="15px" alt="Clear Data">
       </div>
 
@@ -123,7 +119,7 @@ function appendAddNewExerciseDiv(container, muscle) {
   var addNewExerciseDiv = document.createElement("div");
   
   // give this button a class so that event listener can be attached on it
-  addNewExerciseDiv.className = "add-exercise-btn flex items-center justify-center bg-black text-white px-5 py-3 border-zinc-300 shadow-lg rounded-md hover:scale-102 transition duration-200";
+  addNewExerciseDiv.className = "add-exercise-btn bg-white font-bold black-text-shadow flex items-center justify-center text-black px-5 py-3 border-zinc-300 shadow-lg rounded-md hover:scale-102 transition duration-200";
   addNewExerciseDiv.dataset.muscle = muscle.name
   addNewExerciseDiv.addEventListener("click", function() {
     let muscleName = this.dataset.muscle;
@@ -147,14 +143,14 @@ function appendAddNewExerciseDiv(container, muscle) {
     // Create the inline input and the buttons
     let form = document.createElement("div")
     form.id = `${muscleName}-input-form`
-    form.className = "flex items-center gap-1 ml-3"
+    form.className = "flex items-center gap-2 ml-5"
 
     form.innerHTML = `
       <input type="text" class="font-[gilLight] exercise-input border-1 bg-black text-white px-3 py-2 text-sm rounded-lg" placeholder="Enter here" />
-      <button class="save-exercise bg-green-600 text-white px-2 py-2 rounded-md text-sm" data-muscle="${muscleName}"> 
+      <button class="save-exercise font-bold bg-linear-to-b from-green-800 to-green-500 text-black px-2 py-2 rounded-md text-sm hover:scale-105 transition duration:200" data-muscle="${muscleName}"> 
         Save
       </button>
-      <button class="cancel-exercise bg-red-600 text-white px-2 py-2 rounded-md text-sm" data-muscle="${muscleName}">
+      <button class="cancel-exercise font-bold bg-linear-to-b from-red-800 to-red-500 text-black px-2 py-2 rounded-md text-sm hover:scale-105 transition duration:200" data-muscle="${muscleName}">
         Cancel
       </button>
     `
@@ -236,7 +232,7 @@ function renderExercises(muscle) {
         />  
 
         <button 
-        class="save-weight bg-green-600 text-white px-2 py-1 rounded-md text-xs sm:text-xs md:text-md"
+        class="save-weight bg-black font-[gilLight] text-green-600 black-text-shadow px-3 py-2 rounded-md text-xs sm:text-xs md:text-md"
         data-muscle="${muscleName}"
         data-id="${exerciseID}"
         >
@@ -244,7 +240,7 @@ function renderExercises(muscle) {
         </button>
 
         <button 
-        class="cancel-weight bg-red-600 text-white px-2 py-1 rounded-md text-xs sm:text-xs md:text-md"
+        class="cancel-weight bg-black text-red-600 px-3 py-2 rounded-md text-xs sm:text-xs md:text-md"
         data-muscle="${muscleName}"
         data-id="${exerciseID}"
         >

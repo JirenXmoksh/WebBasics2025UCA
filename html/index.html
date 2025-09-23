@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LifTracker Home</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  
+  <link rel="stylesheet" href="../css/index.css">
   <style>
     @font-face {
       font-family: 'gilMed';
@@ -21,58 +21,57 @@
     }
   </style>
 </head>
-<body id="bodi" class="bg-white text-black select-none">
-  
-  <nav class="w-full text-sm font-[gilBold]">
-    <div class="flex items-center justify-between px-10 py-4 bg-white text-black border-b-1 border-zinc-300">
+
+<body id="bodi" class=" text-black select-none">
+  <nav class="w-full text-sm font-[gilLight] bg-black text-zinc-200">
+    <div class="flex items-center justify-between px-10 py-4 border-zinc-300">
       <div>
-        <h1 class="text-[2vw]"><a href="index.html">LT</a></h1>
+        <h1 class="text-[2vw] white-text-shadow"><a href="index.html">LT</a></h1>
       </div>
       <div>
-        <h1 class="text-[2vw]">LiftTracker</h1>
+        <h1 class="text-[2vw] white-text-shadow">LiftTracker</h1>
       </div>
       <div>
-        <h1 class="text-[1vw]">
-          <button class="bg-white text-black cursor-pointer">
-            <a href="profile.html">Profile</a>
-          </button>
-        </h1>
+        <button class="profile-btn cursor-pointer white-text-shadow bg-white text-black py-2 px-4 font-bold rounded-2xl text-sm border-none hover:scale-105 transition duration-200">
+          <a href="profile.html">Profile</a>
+        </button>
       </div>
     </div>
   </nav>
 
-  <div class="text-center pb-10 font-[gilLight]">
-    <h1 class="text-[5vw] font-[gilMed]">Top Three Lifts</h1> 
-    <div class="flex flex-wrap items-center justify-center px-10 gap-5">
+  <div class="flex flex-col items-center justify-center font-[gilLight] bg-gradient-to-b from-black via-zinc-800 to-purple-600 pb-[10vh] min-h-screen">
+    <h1 class="text-[8vw] font-[gilMed] white-text-shadow text-white pb-10">The 3 PRs</h1> 
+    <div class=" flex items-center justify-center w-full px-10 gap-5">
+      
       <!-- At max 4 PRs -->
       <!-- PR div-->
-      <div class="border-2 border-black w-1/4 px-5 py-10 rounded-2xl border-zinc-300 shadow-md">
-        <h2 class="text-[2vw]">Deadlift</h2>
-        <h3 class="text-[1vw]" id="dead"></h3>
+      <div class="flex items-center justify-around bg-black/50 text-purple-600 w-full px-5 py-20 rounded-2xl shadow-md">
+        <h2 class="text-[2vw] font-bold  uppercase purple-text-shadow">Deadlift</h2>
+        <h3 class="text-[1.5vw] font-bold " id="dead"></h3>
       </div>
 
       <!-- PR div-->
-      <div class="border-2 border-black w-1/4 px-5 py-10 rounded-2xl border-zinc-300 shadow-md">
-        <h2 class="text-[2vw]">Bench Press</h2>
-        <h3 class="text-[1vw]" id="bench-press"></h3>
+      <div class="flex items-center justify-around bg-black/50 text-purple-600 w-full px-5 py-20 rounded-2xl border-zinc-300 shadow-md">
+        <h2 class="text-[2vw] font-bold purple-text-shadow uppercase">Bench Press</h2>
+        <h3 class="text-[1.5vw] font-bold" id="bench-press"></h3>
       </div>
 
       <!-- PR div-->
-      <div class="border-2 border-black w-1/4 px-5 py-10 rounded-2xl border-zinc-300 shadow-md">
-        <h2 class="text-[2vw]">Squat</h2>
-        <h3 class="text-[1vw]" id="squat"></h3>
+      <div class="flex items-center justify-around bg-black/50 text-purple-600 w-full px-5 py-20 rounded-2xl border-zinc-300 shadow-md">
+        <h2 class="text-[2vw] font-bold purple-text-shadow uppercase">Squat</h2>
+        <h3 class="text-[1.5vw] font-bold" id="squat"></h3>
       </div>
 
     </div>
   </div>
 
-  <div class="py-5 font-[gilMed] bg-zinc-100">
-    <h1 class="text-center text-[5vw]">My Exercises</h1>
+  <div class="py-5 font-[gilMed] bg-black text-white">
+    <h1 class="text-center text-[5vw] white-text-shadow">My Exercises</h1>
 
     <!-- Chest -->
     <section class="chestDiv px-10 mb-10">
       <div class="flex items-center"> 
-        <h1 class="text-[4vw] font-[gilLight] uppercase">Chest</h1>
+        <h1 class="text-[4vw] font-[gilLight] uppercase text">Chest</h1>
       </div>
 
       <!-- Dynamic rendering of exercises here -->
@@ -130,14 +129,14 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-2 mt-0" id="triceps-container"></div>
     </section>
   </div>
-  <footer class="footer flex font-[gilBold] items-center justify-between w-full py-10 px-5">
+  <footer class="footer flex font-[gilMed] bg-black text-purple-600 items-center justify-between w-full py-10 px-5">
     <div>
-      <h1 class="text-[4vw]"><a href="index.html">LifTracker</a></h1>
-      <h3 class="text-[1vw]">Track your lifts</h3>
+      <h1 class="text-[4vw] purple-text-shadow"><a href="index.html">LifTracker</a></h1>
+      <h3 class="text-[1vw] text-purple-800">Track your lifts</h3>
     </div>
     <div>
-      <h3 class="text-md font-[gilMed] text-zinc-400">Copyright © Moksh G16 UCA 2025, 23101991905.</h3>
-      <h3 class="text-md font-[gilMed] text-zinc-400">Chitkara University, Punjab. All Rights Reserved.</h3>
+      <h3 class="text-md font-[gilMed] text-purple-200">Copyright © Moksh G16 UCA 2025, 23101991905.</h3>
+      <h3 class="text-md font-[gilMed] text-purple-300">Chitkara University, Punjab. All Rights Reserved.</h3>
     </div>
   </footer>
 
